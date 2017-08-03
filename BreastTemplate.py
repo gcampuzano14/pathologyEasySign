@@ -262,9 +262,9 @@ def attending(out_string, site):
     "Dr. %s was notified of the above findings on %s by email. " % (fieldValues[0], fieldValues[1],str(fieldValues[2]))
     out_string = "".join([out_string, people_str])
     if site == "UM":
-        out_string = "".join([out_string, "Jenny Obando and Tamara Gort were copied on this communication."])
+        out_string = "".join([out_string, "XXX were copied on this communication."])
     elif site == "JMH":
-        out_string = "".join([out_string, "Karen Hernandez and Ramona Salinel were copied on this communication."])
+        out_string = "".join([out_string, "XXX were copied on this communication."])
         return out_string
     return out_string
 
