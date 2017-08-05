@@ -46,17 +46,17 @@ def inv():
     msg = "Calculate grade"
     title = "GRADE CALC"
     fieldNames = ["TUBULES", "NUCLEAR GRADE", "MITOSIS"]
-    fieldValues = []  #  we start with blanks for the values
+    fieldValues = []  # we start with blanks for the values
     fieldValues = multenterbox(msg, title, fieldNames)
 
     grade_calc = int(fieldValues[0]) + int(fieldValues[1]) + int(fieldValues[2])
     grade_str = " (%s+%s+%s=%s), " % (fieldValues[0], fieldValues[1], fieldValues[2],str(grade_calc))
     if grade_calc == 3 or grade_calc == 4 or grade_calc == 5:
-        out_string = "".join([out_string, " well differentiated, Nottingham grade 1"])
+        out_string = "".join([out_string, " WELL DIFFERENTIATED, NOTTINGHAM GRADE 1"])
     elif grade_calc == 6 or grade_calc == 7:
-        out_string = "".join([out_string, " moderately differentiated, Nottingham grade 2"])
+        out_string = "".join([out_string, " MODERATELY DIFFERENTIATED, NOTTINGHAM GRADE 2"])
     elif grade_calc == 8 or grade_calc == 9:
-        out_string = "".join([out_string, " poorly differentiated, Nottingham grade 3"])
+        out_string = "".join([out_string, " POORLY DIFFERENTIATED, NOTTINGHAM GRADE 3"])
     out_string = "".join([out_string, grade_str])
 
     # TUMOR SIZE
@@ -65,8 +65,7 @@ def inv():
     fieldName = ["TUMOR SIZE (cm)"]
     fieldValue = []  # we start with blanks for the values
     fieldValue = multenterbox(msg, title,  fieldName)
-
-    size_str = "%s cm in greatest linear microscopic dimension.\n\n" % (fieldValue[0])
+    size_str = "%s CM IN GREATEST LINEAR MICROSCOPIC DIMENSION.\n\n" % (fieldValue[0])
     out_string = "".join([out_string, size_str])
 
     # POS CORES
@@ -75,22 +74,18 @@ def inv():
     fieldNames = ["NUMBER OF POSITIVE ", "TOTAL CORES", "PERCENTAGE OF TUMOR"]
     fieldValues = []  # we start with blanks for the values
     fieldValues = multenterbox(msg, title,  fieldNames)
-
-    core_str = "The invasive carcinoma is present in %s of %s core fragments, representing approximately %s%% of the tissue sampled.\n\n" % (fieldValues[0], fieldValues[1], fieldValues[2])
-
+    core_str = "THE INVASIVE CARCINOMA IS PRESENT IN %s OF %s CORE FRAGMENTS, REPRESENTING APPROXIMATELY %s%% OF THE TISSUE SAMPLED.\n\n" % (fieldValues[0], fieldValues[1], fieldValues[2])
     out_string = "".join([out_string, core_str])
 
     # e-cadherin?
-
     title = "E-CADHERIN"
     msg = "NEEDS E-CADHERIN?"
     dx = ["YES", "NO"]
     need = choicebox(msg, title, dx)
     if need == "YES":
-        out_string = "".join([out_string, "Immunohistochemistry for ER, PR, HER2 and E-cadherin is pending; an addendum to follow.\n\n"])
+        out_string = "".join([out_string, "IMMUNOHISTOCHEMISTRY FOR ER, PR, HER2 AND E-CADHERIN IS PENDING; AN ADDENDUM TO FOLLOW.\n\n"])
     elif need == "NO":
-        out_string = "".join([out_string, "Immunohistochemistry for ER, PR and HER2 is pending; an addendum to follow.\n\n"])
-
+        out_string = "".join([out_string, "IMMUNOHISTOCHEMISTRY FOR ER, PR AND HER2 IS PENDING; AN ADDENDUM TO FOLLOW.\n\n"])
     title = "DIAGNOSIS"
     msg = "NEW DIAGNOSIS?"
     dx = ["YES", "NO"]
@@ -133,11 +128,11 @@ def insitu():
     grade_box = choicebox(msg, title, gr)
 
     if grade_box == "LOW":
-        out_string = ", ".join([out_string, "low nuclear grade"])
+        out_string = ", ".join([out_string, "LOW NUCLEAR GRADE"])
     elif grade_box == "INTERMEDIATE":
-        out_string = ", ".join([out_string, "intermediate nuclear grade"])
+        out_string = ", ".join([out_string, "INTERMEDIATE NUCLEAR GRADEi"])
     elif grade_box == "HIGH":
-        out_string = ", ".join([out_string, "high nuclear grade"])
+        out_string = ", ".join([out_string, "HIGH NUCLEAR GRADE"])
 
     if diagnosis == "DUCTAL" and grade_box == "LOW":
         out_string = " ".join([out_string, "(DIN 1)"])
@@ -152,18 +147,16 @@ def insitu():
     elif diagnosis == "LOBULAR" and grade_box == "HIGH":
         out_string = " ".join([out_string, "(LIN 3)"])
     elif diagnosis == "MAMMARY":
-        exit
+        pass
 
     # TYPES
     if diagnosis == "MAMMARY":
-        exit
+        pass
     else:
         msg = "Select all that apply"
         title = "INSITU TYPES"
-        choices = ["solid", "cribriform", "papillary", "micropapillary", "comedo", "pleomorphic", "apocrine"]
+        choices = ["SOLID", "CRIBRIFORM", "PAPILLARY", "MICROPAPILLARY", "COMEDO", "PLEOMORPHIC", "APOCRINE"]
         choicesvalues = multchoicebox(msg, title, choices)
-#                 print(len(choicesvalues))
-
         if len(choicesvalues) > 1:
              out_string = " ".join([out_string, ", ".join(choicesvalues[:-1]), "and", "".join(choicesvalues[-1]), "types,"])
         else:
@@ -175,13 +168,13 @@ def insitu():
     calc_dx = ["YES", "YES WITH NECROSIS", "NO", "NO with necrosis", "Do not report"]
     calcbox = choicebox(msg, title, calc_dx)
     if calcbox == "YES":
-        out_string = " ".join([out_string, "with associated calcifications.\n\n"])
+        out_string = " ".join([out_string, "WITH ASSOCIATED CALCIFICATIONS.\n\n"])
     elif calcbox == "YES WITH NECROSIS":
-        out_string = " ".join([out_string, "with associated necrosis and calcifications.\n\n"])
+        out_string = " ".join([out_string, "WITH ASSOCIATED NECROSIS AND CALCIFICATIONS.\n\n"])
     elif calcbox == "NO":
-        out_string = " ".join([out_string, "without calcifications.\n\n"])
+        out_string = " ".join([out_string, "WITHOUT CALCIFICATIONS.\n\n"])
     elif calcbox == "NO with necrosis":
-        out_string = " ".join([out_string, "with associated necrosis.\n\n"])
+        out_string = " ".join([out_string, "WITH ASSOCIATED NECROSIS.\n\n"])
     elif calcbox == "Do not report":
         pass
 
@@ -191,7 +184,7 @@ def insitu():
     fieldName = ["TUMOR SIZE (cm)", "TUMOR PERCENTAGE"]
     fieldValue = []  # we start with blanks for the values
     fieldValue = multenterbox(msg, title,  fieldName)
-    size_str = "%s cm in greatest linear microscopic dimension, and representing approximately %s%% of the specimen\n\n" % (fieldValue[0], fieldValue[1])
+    size_str = "%s CM IN GREATEST LINEAR MICROSCOPIC DIMENSION, AND REPRESENTING APPROXIMATELY %s%%  OF THE SPECIMEN\n\n" %  (fieldValue[0],fieldValue[1])
     out_string = "".join([out_string, size_str])
 
     # e-cadherin?
@@ -200,9 +193,9 @@ def insitu():
     dx = ["YES", "NO"]
     need = choicebox(msg, title, dx)
     if need == "YES":
-        out_string = "".join([out_string, "Immunohistochemistry for ER, PR and E-cadherin is pending; an addendum to follow.\n\n"])
+        out_string = "".join([out_string, "IMMUNOHISTOCHEMISTRY FOR ER, PR AND E-CADHERIN IS PENDING; AN ADDENDUM TO FOLLOW.\n\n"])
     elif need == "NO":
-        out_string = "".join([out_string, "Immunohistochemistry for ER, PR is pending; an addendum to follow.\n\n"])
+        out_string = "".join([out_string, "IMMUNOHISTOCHEMISTRY FOR ER, PR IS PENDING; AN ADDENDUM TO FOLLOW.\n\n"])
 
     print(out_string)
     pyperclip.copy(out_string)
@@ -227,13 +220,12 @@ def insitu():
 
 def fcy():
     # fibrocystic
-    out_string = "Fibrocystic changes including"
+    out_string = "FIBROCYSTIC CHANGES INCLUDING"
     msg = "Select all that apply"
     title = "Fibrocystic descriptors"
-    choices = ["intraductal hyperplasia", "usual ductal hyperplasia", "adenosis", "sclerosing adenosis", "microcysts", "papillomatosis", "columnar cell change", "apocrine change"]
+    choices = ["INTRADUCTAL HYPERPLASIA", "USUAL DUCTAL HYPERPLASIA", "ADENOSIS", "SCLEROSING ADENOSIS", "MICROCYSTS", "PAPILLOMATOSIS", "COLUMNAR CELL CHANGE", "APOCRINE CHANGE"]
     choicesvalues = multchoicebox(msg, title, choices)
-
-    out_string = " ".join([out_string, ", ".join(choicesvalues), "and stromal fibrosis"])
+    out_string = " ".join([out_string, ", ".join(choicesvalues), "AND STROMAL FIBROSIS"])
 
     # CALC
     title = "Calcifications"
@@ -241,9 +233,9 @@ def fcy():
     calc_dx = ["YES", "NO", "Do not report"]
     calcbox = choicebox(msg, title, calc_dx)
     if calcbox == "YES":
-        out_string = " ".join([out_string, "with calcifications."])
+        out_string = " ".join([out_string, "WITH CALCIFICATIONS."])
     elif calcbox == "NO":
-        out_string = " ".join([out_string, "without calcifications."])
+        out_string = " ".join([out_string, "WITHOUT CALCIFICATIONS."])
     elif calcbox == "Do not report":
         pass
     return out_string
@@ -255,7 +247,7 @@ def attending(out_string, site):
     msg = "SITE DOCTORS"
     title = "SITE"
     fieldNames = ["PATHOLOGIST", "CLINICIAN", "DATE"]
-    fieldValues = [" ", " ",str(date)]
+    fieldValues = [" ", " ", str(date)]
     fieldValues = multenterbox(msg, title,  fieldNames, fieldValues)
 
     people_str = "Dr. %s has reviewed select slides and concurs with the above diagnosis.\n\n" \
